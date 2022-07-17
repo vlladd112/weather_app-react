@@ -31,9 +31,6 @@ function App() {
   }
 
   useEffect(() => {
-    // navigator.geolocation.getCurrentPosition(location => {
-    //   setCurrentLocation(location.coords);
-    // })
     currentLocationCoords(setCurrentLocation);
   }, [] )
   useEffect(() => {
@@ -50,19 +47,6 @@ function App() {
         }).catch(err => console.log('ERROR', err));
         }
   }, [currentLocation, language, unit]);
-  // useEffect(() => {
-    // if(location) {
-    //   axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${unit}&lang=${language}&appid=ad232c5285db15075e3e2ece306f1649`).then(response => {
-    //   setWeatherData(response.data);
-    // }).catch(err => console.log('ERROR', err));
-    // return;
-    // }
-  //   if(currentLocation) {
-  //     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${currentLocation?.latitude}&lon=${currentLocation?.longitude}&units=${unit}&lang=${language}&appid=ad232c5285db15075e3e2ece306f1649`).then(response => {
-  //     setWeatherData(response.data);
-  //   }).catch(err => console.log('ERROR', err));
-  //   }
-  // }, [currentLocation, location, language, unit]);
 
   return (
     (currentLocation && localWeatherData && <div>
