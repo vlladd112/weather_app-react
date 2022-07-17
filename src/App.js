@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Nav from './components/navigation/Nav';
 import "./styles/app.scss";
-import {currentLocationCoords} from "./api";
+import {currentLocationCoords, getLocalWeatherUrl, getWeatherUrl} from "./api";
 
 function App() {
 
@@ -38,21 +38,23 @@ function App() {
 
   useEffect(() => {
     currentLocationCoords(setCurrentLocation);
-  }, [] )
-  useEffect(() => {
-    if(location) {
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${unit}&lang=${language}&appid=ad232c5285db15075e3e2ece306f1649`).then(response => {
-      setWeatherData(response.data);
-    }).catch(err => console.log('ERROR', err));
-    }
-  }, [location, language, unit]);
+  }, [] );
+
   useEffect(() => {
     if(currentLocation) {
-          axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${currentLocation?.latitude}&lon=${currentLocation?.longitude}&units=${unit}&lang=${language}&appid=ad232c5285db15075e3e2ece306f1649`).then(response => {
+          axios.get(getLocalWeatherUrl(currentLocation, language, unit)).then(response => {
             setLocalWeatherData(response.data);
         }).catch(err => console.log('ERROR', err));
         }
   }, [currentLocation, language, unit]);
+
+  useEffect(() => {
+    if(location) {
+      axios.get(getWeatherUrl(location, language, unit)).then(response => {
+      setWeatherData(response.data);
+    }).catch(err => console.log('ERROR', err));
+    }
+  }, [location, language, unit]);
 
   return (
     (currentLocation && localWeatherData && <div>
