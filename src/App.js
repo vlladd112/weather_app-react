@@ -30,6 +30,12 @@ function App() {
     setUnit(e.target.value);
   }
 
+  const handleKeyDown = e => {
+    if(e.key === 'Enter') {
+      applyLocation();
+    }
+  }
+
   useEffect(() => {
     currentLocationCoords(setCurrentLocation);
   }, [] )
@@ -55,7 +61,7 @@ function App() {
       {weatherData ? weatherData.weather[0].description : localWeatherData.weather[0].description}, 
       {weatherData ? weatherData.name : localWeatherData.name}, 
       {weatherData ? weatherData.sys.country : localWeatherData.sys.country}
-      <input type='text' onChange={inputDataFunction}/>
+      <input type='text' onChange={inputDataFunction} onKeyDown={handleKeyDown}/>
       <button onClick={applyLocation}>Get weather</button>
       <span>Language</span>
       <select onChange={applyLanguage}>
