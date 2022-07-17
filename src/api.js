@@ -16,6 +16,10 @@
 // geoLocation();
 
 
+export const currentLocationCoords = (setLocation) => {
+    navigator.geolocation.getCurrentPosition(location => {
+        setLocation(location.coords);
+        })};
 
 // useEffect(() => {
 //     navigator.geolocation.getCurrentPosition(location => {

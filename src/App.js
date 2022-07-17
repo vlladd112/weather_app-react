@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Nav from './components/navigation/Nav';
 import "./styles/app.scss";
+import {currentLocationCoords} from "./api";
 
 function App() {
 
@@ -30,9 +31,10 @@ function App() {
   }
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(location => {
-      setCurrentLocation(location.coords);
-    })
+    // navigator.geolocation.getCurrentPosition(location => {
+    //   setCurrentLocation(location.coords);
+    // })
+    currentLocationCoords(setCurrentLocation);
   }, [] )
   useEffect(() => {
     if(location) {
