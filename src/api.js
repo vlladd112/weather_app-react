@@ -8,5 +8,5 @@ export const currentLocationCoords = (setLocation) => {
 };
 
 // get weather data
-export const getLocalWeatherUrl = (coords, language, unit) => `${baseUrl}?lat=${coords?.latitude}&lon=${coords?.longitude}&units=${unit}&lang=${language}&appid=ad232c5285db15075e3e2ece306f1649`;
-export const getWeatherUrl = (location, language, unit) => `${baseUrl}?q=${location}&units=${unit}&lang=${language}&appid=ad232c5285db15075e3e2ece306f1649`;
+export const getLocalWeatherUrl = (coords, language, unit) => `${baseUrl}?lat=${coords?.latitude}&lon=${coords?.longitude}&units=${unit}&lang=${language}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+export const getWeatherUrl = (location, language, unit) => `${baseUrl}?q=${location}&units=${unit}&lang=${language}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
